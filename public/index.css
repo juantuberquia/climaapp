@@ -3,11 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
 nav .brand-logo {
   display: block;
   text-align: center;
   position: relative;
 }
+
+@media only screen and (max-width: 1400px) {
+  nav .brand-logo {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
 .input-field label {
   color: white;
 }
@@ -34,7 +44,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   color: white;
 }
 
-.contenedor-form {
+.content-form {
   padding: 3rem 0 1px 0;
   background-color: #03a9f4;
 }
