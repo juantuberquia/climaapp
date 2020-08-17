@@ -10,12 +10,18 @@ nav .brand-logo {
   position: relative;
 }
 
-@media only screen and (max-width: 1400px) {
+/* @media only screen and (max-width: 1400px) {
   nav .brand-logo {
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
+} */
+
+.button {
+  width: 100%;
+  font-weight: bold;
+  /* color: black; */
 }
 
 .input-field label {
@@ -82,8 +88,9 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   display: block !important;
 }
 
-.error {
-  padding: 1rem !important;
+/* .textError { */
+/* font-weight: normal; */
+/* padding: 1rem !important;
   text-align: center !important;
-  color: #fff !important;
-}
+  color: #fff !important; */
+/* } */

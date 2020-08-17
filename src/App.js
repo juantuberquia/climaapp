@@ -1,16 +1,29 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Headering from "./components/Headering";
 import ContentForm from "./components/ContentForm";
-import Error from "./components/Error";
 
 function App() {
-  const [error, setError] = useState(false);
+  const [dataForm, setDataForm] = useState({
+    ciudad: "",
+    pais: "",
+  });
+
+  const { ciudad, pais } = dataForm;
+
+  const [search, setSearch] = useState(false);
+
+  useEffect(() => {
+    console.log(ciudad);
+  }, [search]);
 
   return (
     <Fragment>
       <Headering title="Clima App" />
-      {error ? <Error message="llenar todos los campos" /> : null}
-      <ContentForm setError={setError} />
+      <ContentForm
+        dataForm={dataForm}
+        setDataForm={setDataForm}
+        setSearch={setSearch}
+      />
     </Fragment>
   );
 }

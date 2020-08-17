@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Form = ({ setError }) => {
-  const [dataForm, setDataForm] = useState({
-    ciudad: "",
-    pais: "",
-  });
-
+const Form = ({ setError, setDataForm, dataForm, setSearch }) => {
   const getData = (e) => {
     setDataForm({
       ...dataForm,
@@ -23,6 +18,7 @@ const Form = ({ setError }) => {
       return;
     } else {
       setError(false);
+      setSearch(true);
     }
   };
 
@@ -45,7 +41,14 @@ const Form = ({ setError }) => {
         </select>
         <label htmlFor="pais"> Pais: </label>
       </div>
-      <button type="submit"> Consultar </button>
+      <div className="input-field col s12">
+        <button
+          type="submit"
+          className="waves-effect waves-light btn-large btn-block yellow accent-4 button"
+        >
+          Consultar
+        </button>
+      </div>
     </form>
   );
 };
