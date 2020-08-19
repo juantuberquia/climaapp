@@ -18,7 +18,7 @@ const ContentForm = ({ setDataForm, dataForm, setSearch }) => {
               setSearch={setSearch}
             />
           </div>
-          <div className="col m6 s12">2</div>
+          {/* <div className="col m6 s12">2</div> */}
         </div>
       </div>
     </div>
