@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Headering from "./components/Headering";
-import ContentForm from "./components/ContentForm";
+import Form from "./components/Form";
+import Error from "./components/Error";
 import Temp from "./components/Temp";
-import { KelvinToCelsius } from "./helper";
 
 function App() {
   const [dataForm, setDataForm] = useState({
@@ -11,7 +11,10 @@ function App() {
   });
 
   const [search, setSearch] = useState(false);
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState({});
+  const [error, setError] = useState(false);
+  const [uploadCompo, setUploadCompo] = useState(false);
+  const [noFindData, setNoFindData] = useState(false);
 
   const { ciudad, pais } = dataForm;
 
@@ -23,7 +26,21 @@ function App() {
           `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiKey}`
         );
         let result = await api.json();
-        setTemp(KelvinToCelsius(result));
+        // console.log(result.code === 200);
+        // console.log(result.code);
+        if (result.cod === 200) {
+          console.log(" aparezco solo si soy succesf");
+          setNoFindData(false);
+          setTemp(result);
+          setUploadCompo(true);
+          setSearch(false);
+        } else {
+          setNoFindData(true);
+          setSearch(false);
+          setUploadCompo(false);
+          console.log(" aparezco solo si soy error");
+          return null;
+        }
       };
       getData();
     }
@@ -32,12 +49,27 @@ function App() {
   return (
     <Fragment>
       <Headering title="Clima App" />
-      <ContentForm
-        dataForm={dataForm}
-        setDataForm={setDataForm}
-        setSearch={setSearch}
-      />
-      <Temp temp={temp} />
+      <div className="content-form">
+        <div className="container">
+          <div className="row">
+            <div className="col m6 s12">
+              {error ? <Error message="Llenar Todos los Campos" /> : null}
+              {noFindData ? <Error message=" error ciudad ingresada " /> : null}
+              <Form
+                setError={setError}
+                setDataForm={setDataForm}
+                dataForm={dataForm}
+                setSearch={setSearch}
+              />
+            </div>
+            {uploadCompo ? (
+              <div className="col m6 s12">
+                <Temp temp={temp} />
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 }
