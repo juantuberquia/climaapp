@@ -1,9 +1,11 @@
 import React from "react";
 
-const Temperature = ({ temp }) => {
-  // if (!temp) return null;
-
+const Temperature = ({ temp, uploadCompo }) => {
   const { main, name } = temp;
+
+  if (uploadCompo === false) {
+    return null;
+  }
 
   return (
     <div className="card-panel white col s12">

@@ -26,19 +26,20 @@ function App() {
           `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiKey}`
         );
         let result = await api.json();
-        // console.log(result.code === 200);
-        // console.log(result.code);
+
+        // validar resultados de la api
         if (result.cod === 200) {
-          console.log(" aparezco solo si soy succesf");
           setNoFindData(false);
           setTemp(result);
           setUploadCompo(true);
           setSearch(false);
-        } else {
+        } else if (result.cod === "404") {
           setNoFindData(true);
+          setUploadCompo(false);
+          setSearch(false);
+        } else {
           setSearch(false);
           setUploadCompo(false);
-          console.log(" aparezco solo si soy error");
           return null;
         }
       };
@@ -62,11 +63,9 @@ function App() {
                 setSearch={setSearch}
               />
             </div>
-            {uploadCompo ? (
-              <div className="col m6 s12">
-                <Temp temp={temp} />
-              </div>
-            ) : null}
+            <div className="col m6 s12">
+              <Temp temp={temp} uploadCompo={uploadCompo} />
+            </div>
           </div>
         </div>
       </div>
