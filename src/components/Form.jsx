@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Form = ({ setError, setDataForm, dataForm, setSearch }) => {
   const getData = (e) => {
@@ -51,6 +52,13 @@ const Form = ({ setError, setDataForm, dataForm, setSearch }) => {
       </div>
     </form>
   );
+};
+
+Form.propTypes = {
+  setError: PropTypes.func.isRequired,
+  setDataForm: PropTypes.func.isRequired,
+  setSearch: PropTypes.func.isRequired,
+  dataForm: PropTypes.object.isRequired,
 };
 
 export default Form;

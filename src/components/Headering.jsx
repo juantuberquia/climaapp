@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 const Headering = ({ title }) => {
   return (
     <nav>
@@ -13,4 +15,7 @@ const Headering = ({ title }) => {
   );
 };
 
+Headering.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 export default Headering;

@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 const Temperature = ({ temp, uploadCompo }) => {
   const { main, name } = temp;
 
@@ -27,6 +29,10 @@ const Temperature = ({ temp, uploadCompo }) => {
       </div>
     </div>
   );
+};
+Temperature.propTypes = {
+  temp: PropTypes.object.isRequired,
+  uploadCompo: PropTypes.bool.isRequired,
 };
 
 export default Temperature;
